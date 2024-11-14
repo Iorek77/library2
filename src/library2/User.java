@@ -75,6 +75,7 @@ public class User {
 
     public static void edituser() {
         int useredit, parametrouser;
+        boolean userdelete = false;
         System.out.println("Elija usuario a modificar.");
         for (User b : userlist) {
             System.out.println(b.getUsername() + " " + b.getId());
@@ -82,7 +83,7 @@ public class User {
         useredit = input.nextInt();
         input.nextLine();
         do {
-            System.out.println("Que parametro modificar?\n1. Nombre\n2. E-Mail\n3. Telefono\n4. Cedula\n5. Salir");
+            System.out.println("Que parametro modificar?\n1. Nombre\n2. E-Mail\n3. Telefono\n4. Cedula\n5. Borrar\n6. Salir");
             parametrouser = input.nextInt();
             input.nextLine();
             switch (parametrouser) {
@@ -114,8 +115,23 @@ public class User {
                     newid = input.nextLine();
                     userlist.get(useredit).setId(newid);
                     break;
+                case 5:
+                    System.out.println("Desea borrar el usuario: " + userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + "?");
+                    System.out.println("1. Si\n2. No");
+                    int confirmation;
+                    confirmation = input.nextInt();
+                    input.nextLine();
+                    switch (confirmation) {
+                        case 1:
+                            System.out.println(userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + " es historia.");
+                            userlist.remove(useredit);
+                            userdelete = true;
+                            break;
+                        case 2:
+                            System.out.println("Cancelar.");
+                            break;
+                    }
             }
-        } while (parametrouser != 5);
+        } while (parametrouser != 6 && userdelete == false);
     }
-
 }

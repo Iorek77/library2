@@ -25,7 +25,7 @@ public class Library2 {
             Boolean menu = true;
             do { // Menu dentro de do-while para evitar que se corte el programa a menos que se elija especificamente la opcion de salir.
                 System.out.println("Menu principal.");
-                System.out.println("1. Crear libro.\n2. Modificar libro.\n3. Rentar libro.\n4. Registrar usuario.\n5. Modificar usuario.\n6. Catalogo. \n7. Salir.");
+                System.out.println("1. Crear libro.\n2. Modificar o borrar libro.\n3. Rentar libro.\n4. Registrar usuario.\n5. Modificar o borrar usuario.\n6. Catalogo. \n7. Salir.");
                 int selection = input.nextInt();
                 input.nextLine();
                 switch (selection) { // El menu se controla a traves de switch.

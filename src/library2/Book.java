@@ -63,6 +63,7 @@ public class Book {
 
     public static void editbook() {
         int libroedit, parametrolibro;
+        boolean bookdelete = false;
         System.out.println("Elija libro a modificar.");
         for (Book b : catalogo) {
             System.out.println(b.getNombre());
@@ -70,7 +71,7 @@ public class Book {
         libroedit = input.nextInt();
         input.nextLine();
         do {
-            System.out.println("Que parametro modificar?\n1. Nombre\n2. Genero\n3. Autor\n4. Copias disponibles\n5. Salir");
+            System.out.println("Que parametro modificar?\n1. Nombre\n2. Genero\n3. Autor\n4. Copias disponibles\n5. Borrar libro\n6. Salir");
             parametrolibro = input.nextInt();
             input.nextLine();
             switch (parametrolibro) {
@@ -102,8 +103,24 @@ public class Book {
                     newquantity = input.nextInt();
                     catalogo.get(libroedit).setQuantity(newquantity);
                     break;
+                case 5:
+                    System.out.println("Desea borrar el libro: " + catalogo.get(libroedit).getNombre() + "?");
+                    System.out.println("1. Si\n2. No");
+                    int confirmation;
+                    confirmation = input.nextInt();
+                    input.nextLine();
+                    switch (confirmation) {
+                        case 1:
+                            System.out.println(catalogo.get(libroedit).getNombre() + " es historia.");
+                            catalogo.remove(libroedit);
+                            bookdelete = true;
+                            break;
+                        case 2:
+                            System.out.println("Cancelar.");
+                            break;
+                    }
             }
-        } while (parametrolibro != 5);
+        } while (parametrolibro != 6 && bookdelete == false);
     }
 
     public static void catalogo() {
