@@ -5,11 +5,11 @@ import static library2.Library2.input;
 import static library2.Library2.userlist;
 import static library2.Library2.rentlist;
 
-public class Rentlist {
+public class Rent {
 
     String id, book, returndate;
 
-    public Rentlist(String id, String book, String returndate) {
+    public Rent(String id, String book, String returndate) {
         this.id = id;
         this.book = book;
         this.returndate = returndate;
@@ -39,7 +39,7 @@ public class Rentlist {
         this.returndate = returndate;
     }
 
-    public static Rentlist booklease() {
+    public static Rent booklease() {
         int menu, currentquantity, booklease = 0, userlease = 0, bookcounter = 0, usercounter = 0;
         String leasedate = "default";
         System.out.println("Bienvenido a la renta de libros.\n1. Rentar libro\n2. Ver lista de rentas\n3. Volver");
@@ -69,7 +69,7 @@ public class Rentlist {
                 break;
             case 2:
                 if (!rentlist.isEmpty()) {
-                    for (Rentlist b : rentlist) {
+                    for (Rent b : rentlist) {
                         System.out.println(b.getBook() + " rentado por " + b.getId() + " en la fecha " + b.getReturndate());
                     }
                 } else {
@@ -79,6 +79,6 @@ public class Rentlist {
             case 3:
                 break;
         }
-        return new Rentlist(userlist.get(userlease).getId(), catalogo.get(booklease).getNombre(), leasedate);
+        return new Rent(userlist.get(userlease).getId(), catalogo.get(booklease).getNombre(), leasedate);
     }
 }

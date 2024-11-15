@@ -13,7 +13,7 @@ public class Library2 {
     private static User admin = new User("Admin", "admin@gmail.com", "01010101", "10101010");
     static ArrayList<Book> catalogo = new ArrayList<>();
     static ArrayList<User> userlist = new ArrayList<>();
-    static ArrayList<Rentlist> rentlist = new ArrayList<>();
+    static ArrayList<Rent> rentlist = new ArrayList<>();
 
     public static void main(String[] args) {
         catalogo.add(LOTR);
@@ -47,19 +47,21 @@ public class Library2 {
                         int looprent = 1,
                          confirm;
                         do {
-                            Rentlist rent = Rentlist.booklease();
+                            Rent rent = Rent.booklease(); // El metodo booklease(); retorna una instancia de Rent  con datos proporcionados por Scanner
                             System.out.println("Confirmar?\n1. Si\n2. No");
                             confirm = input.nextInt();
                             input.nextLine();
                             switch (confirm) {
                                 case 1:
-                                rentlist.add(rent);
+                                    rentlist.add(rent);
+                                    System.out.println("Rentar otro libro?");
+                                    System.out.println("1. Si \\ 2. No");
+                                    looprent = input.nextInt();
+                                    break;
                                 case 2:
                                     break;
                             }
-                            System.out.println("Rentar otro libro?");
-                            System.out.println("1. Si \\ 2. No");
-                            looprent = input.nextInt();
+
                         } while (looprent == 1);
                         break;
                     case 4: // Registrar usuario
