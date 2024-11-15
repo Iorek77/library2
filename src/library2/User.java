@@ -74,64 +74,69 @@ public class User {
     }
 
     public static void edituser() {
-        int useredit, parametrouser;
+        int useredit, parametrouser, counter = 0;
         boolean userdelete = false;
-        System.out.println("Elija usuario a modificar.");
-        for (User b : userlist) {
-            System.out.println(b.getUsername() + " " + b.getId());
-        }
-        useredit = input.nextInt();
-        input.nextLine();
-        do {
-            System.out.println("Que parametro modificar?\n1. Nombre\n2. E-Mail\n3. Telefono\n4. Cedula\n5. Borrar\n6. Salir");
-            parametrouser = input.nextInt();
-            input.nextLine();
-            switch (parametrouser) {
-                case 1:
-                    String newname;
-                    System.out.println("Nombre actual: " + userlist.get(useredit).getUsername());
-                    System.out.println("Ingrese nombre nuevo: ");
-                    newname = input.nextLine();
-                    userlist.get(useredit).setUsername(newname);
-                    break;
-                case 2:
-                    String newemail;
-                    System.out.println("E-Mail actual: " + userlist.get(useredit).getEmail());
-                    System.out.println("Ingrese E-Mail nuevo: ");
-                    newemail = input.nextLine();
-                    userlist.get(useredit).setEmail(newemail);
-                    break;
-                case 3:
-                    String newphone;
-                    System.out.println("Telefono actual: " + userlist.get(useredit).getPhone());
-                    System.out.println("Ingrese telefono nuevo: ");
-                    newphone = input.nextLine();
-                    userlist.get(useredit).setPhone(newphone);
-                    break;
-                case 4:
-                    String newid;
-                    System.out.println("Cedula actual: " + userlist.get(useredit).getId());
-                    System.out.println("Ingrese cedula nueva: ");
-                    newid = input.nextLine();
-                    userlist.get(useredit).setId(newid);
-                    break;
-                case 5:
-                    System.out.println("Desea borrar el usuario: " + userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + "?");
-                    System.out.println("1. Si\n2. No");
-                    int confirmation;
-                    confirmation = input.nextInt();
-                    input.nextLine();
-                    switch (confirmation) {
-                        case 1:
-                            System.out.println(userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + " es historia.");
-                            userlist.remove(useredit);
-                            userdelete = true;
-                            break;
-                        case 2:
-                            System.out.println("Cancelar.");
-                            break;
-                    }
+        if (!userlist.isEmpty()) {
+            System.out.println("Elija usuario a modificar.");
+            for (User b : userlist) {
+                System.out.println(counter + " " + b.getUsername() + " " + b.getId());
+                counter++;
             }
-        } while (parametrouser != 6 && userdelete == false);
+            useredit = input.nextInt();
+            input.nextLine();
+            do {
+                System.out.println("Que parametro modificar?\n1. Nombre\n2. E-Mail\n3. Telefono\n4. Cedula\n5. Borrar\n6. Salir");
+                parametrouser = input.nextInt();
+                input.nextLine();
+                switch (parametrouser) {
+                    case 1:
+                        String newname;
+                        System.out.println("Nombre actual: " + userlist.get(useredit).getUsername());
+                        System.out.println("Ingrese nombre nuevo: ");
+                        newname = input.nextLine();
+                        userlist.get(useredit).setUsername(newname);
+                        break;
+                    case 2:
+                        String newemail;
+                        System.out.println("E-Mail actual: " + userlist.get(useredit).getEmail());
+                        System.out.println("Ingrese E-Mail nuevo: ");
+                        newemail = input.nextLine();
+                        userlist.get(useredit).setEmail(newemail);
+                        break;
+                    case 3:
+                        String newphone;
+                        System.out.println("Telefono actual: " + userlist.get(useredit).getPhone());
+                        System.out.println("Ingrese telefono nuevo: ");
+                        newphone = input.nextLine();
+                        userlist.get(useredit).setPhone(newphone);
+                        break;
+                    case 4:
+                        String newid;
+                        System.out.println("Cedula actual: " + userlist.get(useredit).getId());
+                        System.out.println("Ingrese cedula nueva: ");
+                        newid = input.nextLine();
+                        userlist.get(useredit).setId(newid);
+                        break;
+                    case 5:
+                        System.out.println("Desea borrar el usuario: " + userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + "?");
+                        System.out.println("1. Si\n2. No");
+                        int confirmation;
+                        confirmation = input.nextInt();
+                        input.nextLine();
+                        switch (confirmation) {
+                            case 1:
+                                System.out.println(userlist.get(useredit).getUsername() + userlist.get(useredit).getId() + " es historia.");
+                                userlist.remove(useredit);
+                                userdelete = true;
+                                break;
+                            case 2:
+                                System.out.println("Cancelar.");
+                                break;
+                        }
+                }
+            } while (parametrouser != 6 && userdelete == false);
+        } else {
+            System.out.println("No hay usuarios registrados.");
+        }
     }
 }

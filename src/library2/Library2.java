@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Library2 {
 //Asignar variables a las que se pueden acceder desde metodos.
-    
+
     static Scanner input = new Scanner(System.in);
     private static Book LOTR = new Book("Lord of the Rings", "Tolkien", "Fantasy", 3);
     private static Book DQ = new Book("Don Quixote", "Miguel de Cervantes", "Novel", 4);
@@ -13,6 +13,7 @@ public class Library2 {
     private static User admin = new User("Admin", "admin@gmail.com", "01010101", "10101010");
     static ArrayList<Book> catalogo = new ArrayList<>();
     static ArrayList<User> userlist = new ArrayList<>();
+    static ArrayList<Rentlist> rentlist = new ArrayList<>();
 
     public static void main(String[] args) {
         catalogo.add(LOTR);
@@ -43,6 +44,23 @@ public class Library2 {
                         Book.editbook();
                         break;
                     case 3: // Rentar libro
+                        int looprent = 1,
+                         confirm;
+                        do {
+                            Rentlist rent = Rentlist.booklease();
+                            System.out.println("Confirmar?\n1. Si\n2. No");
+                            confirm = input.nextInt();
+                            input.nextLine();
+                            switch (confirm) {
+                                case 1:
+                                rentlist.add(rent);
+                                case 2:
+                                    break;
+                            }
+                            System.out.println("Rentar otro libro?");
+                            System.out.println("1. Si \\ 2. No");
+                            looprent = input.nextInt();
+                        } while (looprent == 1);
                         break;
                     case 4: // Registrar usuario
                         int loopuser = 1;
@@ -65,6 +83,7 @@ public class Library2 {
                         menu = false;
                         break;
                 }
+
             } while (menu == true);
         } else {
             System.out.println("Clave incorrecta");
